@@ -1,4 +1,4 @@
-// event.melaxin.kr 랜딩 공통 동작 — 모든 랜딩 폴더가 ../common/landing.js 로 씀.
+// clinic.melaxin.kr/event/ 랜딩 공통 동작(11-12까지 event.melaxin.kr) — 모든 랜딩 폴더가 ../common/landing.js 로 씀.
 // 랜딩마다 다른 값은 그 폴더 index.html의 <body> 칸으로 정해요:
 //   data-ends="2026-12-01"           이 날(한국 시간 0시)부터 가격·시술 칸을 숨기고 '이벤트 끝' 안내를 보임
 //   data-msg-kakao="리프팅 이벤트 보고 왔어요"   상담 버튼(class js-chat, data-ch=채널)을 누를 때 보내질 첫 문구 — 채널마다 data-msg-<채널>

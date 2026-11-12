@@ -1,4 +1,4 @@
-/* event.melaxin.kr 랜딩 공통 모양 — 모든 랜딩 폴더가 ../common/landing.css 로 씀.
+/* clinic.melaxin.kr/event/ 랜딩 공통 모양 — 모든 랜딩 폴더가 ../common/landing.css 로 씀.
  여기를 고치면 모든 랜딩이 같이 바뀌어요. 랜딩 하나만 다른 건 그 폴더 index.html의 <style>에. */
 :root {
   --panel: #f3ece4;       /* 베이지 판 */
