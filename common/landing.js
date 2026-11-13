@@ -41,7 +41,9 @@ var CHANNELS = {
 //   그래서 소재 번호가 c01~c10이면 그 번호 주소(https://c03.melaxin.kr/ — Cloudflare Pages 프로젝트 melaxin-kakao 하나에 주소 여러 개)를
 //   0.3초 거쳐 카카오로 가요 → 상담실 화면에 '이전 페이지: https://c03.melaxin.kr/'. 손님은 복사·붙여 넣기 없이 바로 채팅.
 //   번호가 없거나 범위 밖이면 지금처럼 복사 + 안내. 번호 주소를 늘리면 KAKAO_HOP_MAX만 바꿈(Cloudflare 주소 1개 + 업체 DNS 1줄 먼저)
-var KAKAO_HOP_MAX = 10;
+//   ⚠ 11-13 15시~ 0 = 잠시 끔: 폰 시험에서 카카오가 '이전 페이지'를 안 남김(카카오 쪽 원인, 운영이 문의 중) → 모든 손님이 복사 + 안내.
+//   카카오 답·채널 설정 확인으로 다시 뜨는 게 확인되면 10으로 되돌림(c01~c10 주소는 그대로 살아 있음)
+var KAKAO_HOP_MAX = 0;
 
 (function () {
   var body = document.body;
