@@ -37,6 +37,12 @@ var CHANNELS = {
   "whatsapp": { prefill: "https://wa.me/821021903760?text=" }
 };
 
+// 카톡 '이전 페이지'에 소재 번호 싣기(11-13) — 카카오는 채팅 첫 화면에 '이전 페이지'를 도메인만 보여 줘요(아이폰 규칙).
+//   그래서 소재 번호가 c01~c10이면 그 번호 주소(https://c03.melaxin.kr/ — Cloudflare Pages 프로젝트 melaxin-kakao 하나에 주소 여러 개)를
+//   0.3초 거쳐 카카오로 가요 → 상담실 화면에 '이전 페이지: https://c03.melaxin.kr/'. 손님은 복사·붙여 넣기 없이 바로 채팅.
+//   번호가 없거나 범위 밖이면 지금처럼 복사 + 안내. 번호 주소를 늘리면 KAKAO_HOP_MAX만 바꿈(Cloudflare 주소 1개 + 업체 DNS 1줄 먼저)
+var KAKAO_HOP_MAX = 10;
+
 (function () {
   var body = document.body;
   var ENDED = false;
@@ -53,6 +59,12 @@ var CHANNELS = {
     return " (" + code + (ad ? "-" + ad : "") + ")";
   }
   var TAG = sourceTag();
+  function kakaoHop() {   // utm_content '_' 앞이 정확히 C+두 자리일 때만(C010·C03A는 X) → C01~KAKAO_HOP_MAX
+    var ad = (params.get("utm_content") || "").split(/[_-]/)[0].toUpperCase();
+    var m = ad.match(/^C(\d\d)$/), n = m ? parseInt(m[1], 10) : 0;
+    return n >= 1 && n <= KAKAO_HOP_MAX ? "https://c" + m[1] + ".melaxin.kr/" : "";
+  }
+  var HOP = kakaoHop();
 
   // 개인정보 처리방침 링크 자리
   var legal = document.querySelector(".legal");
@@ -127,6 +139,9 @@ var CHANNELS = {
     a.addEventListener('click', function (ev) {
       var ch = a.dataset.ch, conf = CHANNELS[ch] || CHANNELS.kakao;
       track('Contact', ch);
+      // 번호 주소를 거쳐 카카오로(위 KAKAO_HOP_MAX 설명) — 번호 주소는 멜락신 채널(_nsCJX)로만 가서 그 채널 버튼일 때만.
+      // 0.3초 뒤에 넘어가야 위 픽셀 Contact 요청이 끊기지 않음
+      if (ch === 'kakao' && HOP && /\/_nsCJX\//.test(a.href)) { ev.preventDefault(); setTimeout(function () { location.href = HOP; }, 300); return; }
       var msg = ENDED ? "" : (body.getAttribute('data-msg-' + ch) || "");
       if (!msg || (conf.appOnly && !PHONE)) return;   // 첫 문구가 없거나 PC의 LINE이면 그냥 버튼 주소로
       msg += TAG;
