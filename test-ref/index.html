@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>카카오 연결 시험 | 닥터멜락신의원 강남</title>
+<!-- 2026-11-13 개발 시험용(끝나면 지움): 카톡 버튼을 누를 때 카카오 '이전 페이지'에 주소 꼬리까지 실리는지 — 픽셀·스크립트 없음 -->
+<style>
+  body{margin:0;padding:24px 20px;font-family:-apple-system,sans-serif;background:#f3f5f9;color:#222}
+  h1{font-size:18px;margin:0 0 6px} p{font-size:14px;color:#5b6577;margin:0 0 18px;word-break:break-all}
+  a{display:block;margin:0 0 14px;padding:16px;border-radius:10px;text-align:center;font-weight:700;text-decoration:none;font-size:16px}
+  .a{background:#FEE500;color:#191919} .b{background:#fff;color:#191919;border:1px solid #c9ced8}
+</style>
+</head>
+<body>
+  <h1>카카오 연결 시험 (병원 내부용)</h1>
+  <p id="u"></p>
+  <a class="a" href="https://pf.kakao.com/_nsCJX/chat" referrerpolicy="no-referrer-when-downgrade">① 노란 버튼 — 전체 주소를 보냄</a>
+  <a class="b" href="https://pf.kakao.com/_nsCJX/chat" referrerpolicy="strict-origin-when-cross-origin">② 흰 버튼 — 지금처럼 앞부분만</a>
+  <script>document.getElementById('u').textContent = '이 화면 주소: ' + location.href;</script>
+</body>
+</html>
