@@ -1,0 +1,46 @@
+/* 2611b(11월 리프팅 일본어판)만의 칸 — common/landing.css·hero-v6.css·landing-b.css(2611a와 같은 파일) 위에 덮음 */
+
+/* 본문 글꼴: 일본어 글자가 있는 Pretendard JP를 앞에(가나·한자), 한글·영문은 Pretendard 그대로 */
+body { font-family: "Pretendard JP Variable", "Pretendard Variable", Pretendard, "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif; }
+.hero-v6 .price-box .side, .hero-v6 .price-box .cond { font-family: "Pretendard JP Variable", "Pretendard Variable", Pretendard, sans-serif; }
+
+/* 맨 위: '万ウォン'이 '만원'보다 길어 가격 칸이 넓어짐 → 단위 글자만 조금 작게 · 이름은 두 줄 폭 그대로 */
+.hero-v6 .won { font-size: .26em; }
+.hero-v6 .row .name { max-width: 8.2em; }
+.hero-v6 .row .name .each { font-size: .74em; font-weight: 800; white-space: nowrap; }   /* 광고 L1처럼 '各20kJ' 작게 */
+.hero-v6 .row .regular-line { white-space: nowrap; }
+
+/* 상담 = LINE 日本 하나: LINE 초록 버튼(카톡 노란 버튼 자리) */
+.btn-line-jp { background: #06C755; color: #fff; }
+.btn-line-jp svg { border-radius: 5px; box-shadow: 0 0 0 1.5px #fff; }
+.bar .btns { grid-template-columns: 1fr; }
+.bar .btn-line-jp { flex-direction: row; gap: 8px; font-size: 17px; }
+.bar .btn-line-jp svg { width: 24px; height: 24px; }
+
+/* 끝난 뒤: '이달 이벤트 보기' 버튼이 없으니(한국어 랜딩으로 가지 않게) 아래 바 높이도 원래대로 */
+body.has-next { --bar-h: 76px; }
+
+/* 택시용 한국어 주소 */
+.addr-ko { margin: 10px 0 0; padding: 10px 12px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+.addr-ko p { margin: 0; font-size: 16px; font-weight: 700; }
+.addr-ko small { display: block; margin-top: 2px; font-size: 12px; color: var(--ink-muted); }
+
+/* 일본어는 병원 이름·부작용 줄이 길어짐 → 병원 이름 자간을 줄여 얼굴 사진에 안 닿게, 가격 줄 위아래를 줄여 360×640에서도 상담 줄이 아래 바 위에 */
+.hero-v6 .brand span { letter-spacing: .02em; }
+.hero-v6 .row { padding: 10px 0; }
+.hero-v6 .row:first-child { padding-top: 2px; }
+
+/* 줄바꿈: 공통 CSS의 keep-all(한국어용)은 띄어쓰기 없는 일본어를 못 꺾음 → 일본어 규칙(normal + strict). 맨 위 이름·표 머리는 정한 자리(띄어쓰기·<wbr>)에서만 */
+body { word-break: normal; line-break: strict; overflow-wrap: anywhere; }
+.hero-v6 .row .name, .cmp thead th { word-break: keep-all; overflow-wrap: normal; }
+
+/* 제목 'リフティング価格表'(9자)이 360폭에서 '表'만 넘어가지 않게 한 줄 고정 + 좁은 폰에선 폭 따라 조금 작게 */
+.hero-v6 h1 { white-space: nowrap; font-size: min(36px, 9.3vw); }
+/* 병원 이름이 한국어보다 길어 360폭에서 머리카락에 닿음 → 조금 작게 + 흰 테두리 빛 */
+.hero-v6 .brand span { font-size: 10.5px; letter-spacing: 0; text-shadow: 0 0 3px #fff, 0 0 6px #fff; }
+/* 한두 글자만 다음 줄로 넘어가는 것 막기: 표 칸은 〜 뒤에서만 꺾고, 질문·답·안내 글은 줄 길이를 고르게 */
+.cmp td { word-break: keep-all; }
+.faq summary, .hero-v6 .price-box .side { text-wrap: balance; }
+.faq details p, .about .sub, .copy-hint, .legal p, .way li { text-wrap: pretty; }
+/* 디자인 폰 확인(11-16): 질문·안내 글이 단어 중간에서 꺾임(かか/る費用·はど/のように·超/音波) → 말 덩어리 단위로(크롬 119+, 안 되는 브라우저는 지금처럼) */
+.faq summary, .faq details p, .about .sub, .copy-hint, .legal p, .way li, .hero-v6 .price-box .side { word-break: auto-phrase; }
